@@ -14,12 +14,11 @@ const ITEMS_PER_PAGE = 30;
 const FlightTable = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [currentPage, setCurrentPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(ITEMS_PER_PAGE); // Add this state
+    const [rowsPerPage, setRowsPerPage] = useState(ITEMS_PER_PAGE); 
     const [sortBy, setSortBy] = useState(null);
     const [sortOrder, setSortOrder] = useState("asc");
-    const [filterFlightNumber, setFilterFlightNumber] = useState(""); // Flight Number filter
-    const [filterDepartureAirport, setFilterDepartureAirport] = useState(""); // Departure Airport filter
-
+    const [filterFlightNumber, setFilterFlightNumber] = useState(""); 
+    const [filterDepartureAirport, setFilterDepartureAirport] = useState("");
     const filteredFlights = flights.filter((flight) =>
     (flight.flight_number.toString().includes(searchQuery) ||
       flight.departure_airport.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -44,31 +43,20 @@ const FlightTable = () => {
     const currentFlights = filteredFlights.slice(startIndex, endIndex);
 
 
-    // const filteredCurrentFlights = currentFlights.filter((flight) =>
-    //   flight.flight_number.toString().includes(searchQuery) ||
-    //   flight.departure_airport.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    //   flight.arrival_airport.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    //   flight.departure_date.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    //   flight.departure_time.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    //   flight.arrival_date.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    //   flight.arrival_time.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    //   flight.passenger_name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    //   flight.seat_number.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    //   (flight.flight_duration + "").toLowerCase().includes(searchQuery.toLowerCase())
+   
 
-    // );
-
+   
     const handlePageChange = (event, newPage) => {
         setCurrentPage(newPage);
     };
 
     const handleRowsPerPageChange = (event) => {
         setRowsPerPage(parseInt(event.target.value, 10));
-        setCurrentPage(0); // Reset page when rows per page changes
+        setCurrentPage(0); 
     };
 
     const handleExportCSV = () => {
-        const csvData = Papa.unparse(filteredFlights); // Convert filteredFlights to CSV format
+        const csvData = Papa.unparse(filteredFlights); 
         const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
         const link = document.createElement("a");
         if (link.download !== undefined) {
@@ -111,7 +99,7 @@ const FlightTable = () => {
                 value={searchQuery}
                 onChange={(event) => {
                     setSearchQuery(event.target.value);
-                    setCurrentPage(0); // Reset page when search query changes
+                    setCurrentPage(0); 
                 }}
                 fullWidth
                 style={{ marginLeft: "10%", marginBottom: "1rem", width: "30%", marginLeft: "auto", borderRadius: "50%" }}
@@ -120,15 +108,15 @@ const FlightTable = () => {
             <button
 
                 variant="contained"
-                style={{ width: "10%", marginLeft: "10%", backgroundColor: "#85E6C5", color: "white" }} // Set background color and text color
+                style={{ width: "20%", height: "3rem",fontWeight: "50px",  marginLeft: "10%", backgroundColor: "#85E6C5", color: "white", borderRadius: "50%" }} // Set background color and text color
                 onClick={handleExportCSV}
             >Export to CSV</button>
 
 
             <TableContainer component={Paper}>
 
-            <div style={{ display: "flex", marginBottom: "1rem" }}>
-    {/* Flight Number Filter */}
+            <div style={{ display: "flex", marginBottom: "1rem"}}>
+  
     <div style={{ width: "15%", marginRight: "1rem" }}>
         <TextField
           
@@ -136,7 +124,7 @@ const FlightTable = () => {
             value={filterFlightNumber}
             onChange={(event) => {
                 setFilterFlightNumber(event.target.value);
-                setCurrentPage(0); // Reset page when filter changes
+                setCurrentPage(0); 
             }}
             fullWidth
 
@@ -152,14 +140,14 @@ const FlightTable = () => {
     </div>
 
     {/* Departure Airport Filter */}
-    <div style={{ width: "15%", marginRight: "1rem" }}>
+    <div style={{ width: "15%", marginRight: "1rem"}}>
         <TextField
            
             variant="outlined"
             value={filterDepartureAirport}
             onChange={(event) => {
                 setFilterDepartureAirport(event.target.value);
-                setCurrentPage(0); // Reset page when filter changes
+                setCurrentPage(0); 
             }}
             fullWidth
             placeholder="Departure Airport"
@@ -300,7 +288,7 @@ const FlightTable = () => {
                 rowsPerPage={rowsPerPage}
                 page={currentPage}
                 onPageChange={handlePageChange}
-                onRowsPerPageChange={handleRowsPerPageChange} // Add this
+                onRowsPerPageChange={handleRowsPerPageChange} 
             />
 
         </div>
