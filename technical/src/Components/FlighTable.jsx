@@ -108,7 +108,7 @@ const FlightTable = () => {
             <button
 
                 variant="contained"
-                style={{ width: "20%", height: "3rem",fontWeight: "50px",  marginLeft: "10%", backgroundColor: "#85E6C5", color: "white", borderRadius: "50%" }} // Set background color and text color
+                style={{ width: "13%", height: "3rem",fontWeight: "50px",  marginLeft: "10%", backgroundColor: "#85E6C5", color: "white", borderRadius: "50%" }} // Set background color and text color
                 onClick={handleExportCSV}
             >Export to CSV</button>
 
